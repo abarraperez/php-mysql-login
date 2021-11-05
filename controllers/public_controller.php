@@ -6,23 +6,25 @@
         $action = 'home';
     }*/
     include _PATH.'views/layout/layout.php';
+    include _PATH.'models/User.php';
     switch ($action) {
         case 'index': 
                include 'views/home.php';
             break;
             case 'login':
+               
                 if(isset($_POST['submit']) && $_POST['submit'] == 'login'){
                     $username = $_POST['username'];
                     $password = $_POST['password'];
-                   /* $user = $db->getUserByUsername($username); */
-                    $user = false;
+                    $u = new User();
+                    $user = (object) $u->get_user_by_username("admin");
+                   
                     if($user){
-                        if(password_verify($password, $user['password'])){
+                        if($user->password == sha1(md5($password)) ){
                             $_SESSION['user'] = $user;
-                            header('Location: index.php?action=index');
+                            header('Location: index.php?controller=admin');
                         }else{
-                    $username = '';
-
+                            $username = '';
                             $password_err = 'Password erroneo';
                         }
                     }else{
@@ -38,10 +40,7 @@
                 }
                 include 'views/login.php';
             break;
-        case 'logout': 
-                session_destroy();
-                header('Location: index.php');
-            break;
+       
         default:
                include _PATH.'views/404.php';
             break;

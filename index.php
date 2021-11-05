@@ -1,5 +1,7 @@
 <?php 
     DEFINE('_PATH', $_SERVER['DOCUMENT_ROOT']. '/dentidesk/php-mysql-login/');
+    session_start();
+    include _PATH . 'Helpers.php';
     if(isset($_GET["controller"])&&isset($_GET["action"])){
         $controller = $_GET["controller"];
         $action = $_GET["action"];

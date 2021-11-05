@@ -1,5 +1,16 @@
-<div class="container">
-    <h1>Ingresa tu usuario y contraseña</h1>
+
+                <?php
+
+                    $u = new User();
+                   $u = (object) $u->get_user_by_username("admin");
+                    echo json_encode($u);
+                    //echo $u->id;
+                    echo sha1(md5("123"));
+                   
+                  //  echo password_verify("123", $u->password);
+                ?>
+                <div class="container">
+    <h1>Ingresa tu usuario y contraseña </h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?controller=public&action=login" method="post">
         <label for="username">Usuario</label>
         <input class="form-control" type="text" name="username" id="username" value="<?php echo $username; ?>">

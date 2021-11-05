@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dentidesk - 2021</title>
+    <title>Administrador Dentidesk - 2021</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -31,12 +31,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="?">Home</a></li>
-            <?php if(isset($_SESSION['user'])): ?>
-                <li><a href="?controller=admin&action=index">Admin</a></li>
-            <?php else: ?>    
-                <li><a href="?controller=public&action=login">Login</a></li>        
-            <?php endif; ?>    
+            <li class="active"><a href="?controller=admin&action=index">Dashboard</a></li>
+            <li><a href="?controller=admin&action=allusers">Usuarios</a></li>
+            <li><a href="?controller=admin&action=logout">Cerrar Sesion</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
