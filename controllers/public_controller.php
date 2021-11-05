@@ -10,6 +10,34 @@
         case 'index': 
                include 'views/home.php';
             break;
+            case 'login':
+                if(isset($_POST['submit']) && $_POST['submit'] == 'login'){
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                   /* $user = $db->getUserByUsername($username); */
+                    $user = false;
+                    if($user){
+                        if(password_verify($password, $user['password'])){
+                            $_SESSION['user'] = $user;
+                            header('Location: index.php?action=index');
+                        }else{
+                    $username = '';
+
+                            $password_err = 'Password erroneo';
+                        }
+                    }else{
+                        $username_err = 'Usuario no encontrado';
+                        $password_err = '';
+
+                    } 
+                }else{
+                    $username = '';
+                    $password = '';
+                    $username_err = '';
+                    $password_err = '';
+                }
+                include 'views/login.php';
+            break;
         case 'logout': 
                 session_destroy();
                 header('Location: index.php');
